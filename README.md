@@ -63,4 +63,4 @@ Start Attendance will allow you to start the attendance. A live webcam feed will
 
 Stop and Save Attendance will allow you to download the attendance list and will modify the main excel with the register numbers. 
 
-In case of discrepency ( misidentification of student or unable to identify student) manual override allows student to enter register number to mark absent or present.
+In case of discrepency (misidentification of student or unable to identify student) manual override allows student to enter register number to mark absent or present.
