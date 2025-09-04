@@ -41,24 +41,24 @@ def load_all_data():
         st.error(f"❌ Error reading 'encodings.pkl': {e}")
         return None, None, None
 
-    # --- 2. Check for Business_Analytics.xlsx ---
-    excel_path = "Business_Analytics.xlsx"
+    # --- 2. Check for <student_list_name> ---
+    excel_path = "<student_list_name>"
     print(f"DEBUG: Looking for '{excel_path}' at full path: {os.path.abspath(excel_path)}")
 
     if not os.path.exists(excel_path):
-        print(">>> FATAL ERROR: 'Business_Analytics.xlsx' NOT FOUND. <<<")
+        print(">>> FATAL ERROR: '<student_list_name>' NOT FOUND. <<<")
         st.error(f"❌ '{excel_path}' not found. Please check your terminal for the full path.")
         return None, None, None
     try:
         df = pd.read_excel(excel_path)
         if 'Roll_Number' not in df.columns:
             print(">>> FATAL ERROR: 'Roll_Number' column missing from Excel file. <<<")
-            st.error("❌ 'Business_Analytics.xlsx' must have a column with the header 'Roll_Number'.")
+            st.error("❌ '<student_list_name>' must have a column with the header 'Roll_Number'.")
             return None, None, None
-        print("--- DEBUG: 'Business_Analytics.xlsx' loaded successfully. ---")
+        print("--- DEBUG: '<student_list_name>' loaded successfully. ---")
     except Exception as e:
-        print(f">>> FATAL ERROR: Failed to read 'Business_Analytics.xlsx'. Details: {e} <<<")
-        st.error(f"❌ Error reading 'Business_Analytics.xlsx': {e}")
+        print(f">>> FATAL ERROR: Failed to read '<student_list_name>'. Details: {e} <<<")
+        st.error(f"❌ Error reading '<student_list_name>': {e}")
         return None, None, None
         
     print("--- DEBUG: Data loading process finished successfully. ---\n")
@@ -220,8 +220,8 @@ if not st.session_state.attendance_df.empty:
         df_to_save = st.session_state.attendance_df.copy()
         df_to_save.drop(columns=['Name'], inplace=True)
         try:
-            df_to_save.to_excel("Business_Analytics.xlsx", index=False)
-            st.success("✅ Master attendance sheet ('Business_Analytics.xlsx') has been updated.")
+            df_to_save.to_excel("<student_list_name>", index=False)
+            st.success("✅ Master attendance sheet ('<student_list_name>') has been updated.")
         except Exception as e:
             st.error(f"Could not save the file. Error: {e}")
 
@@ -250,4 +250,5 @@ if not st.session_state.attendance_df.empty:
         st.dataframe(st.session_state.attendance_df, use_container_width=True)
 
 else:
+
     st.error("Application cannot start. Please fix the file errors shown above and check the terminal for more details.")
